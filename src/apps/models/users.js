@@ -1,5 +1,4 @@
-const config = require("config");
-const mongoose = require(config.get("app.database"))();
+const mongoose = require('../../common/database')();
 
 const userSchema = new mongoose.Schema({
     email:{

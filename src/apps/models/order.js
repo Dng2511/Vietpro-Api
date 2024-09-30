@@ -1,5 +1,5 @@
 const config = require("config");
-const mongoose = require(config.get("app.database"))();
+const mongoose = require('../../common/database')();
 
 const itemSchema = new mongoose.Schema({
     prd_id: {

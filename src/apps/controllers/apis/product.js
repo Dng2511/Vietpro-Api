@@ -65,5 +65,11 @@ exports.storeComment = async (req, res) =>{
         email: body.email,
         content: body.content,
         prd_id: id,
-    }
+    };
+    await new CommentModel(comment).save();
+    res.status(200).json({
+        status: "success",
+        message: "comment created successfully",
+    })
+
 }

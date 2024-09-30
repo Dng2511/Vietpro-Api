@@ -1,4 +1,4 @@
-const { default: mongoose } = require('mongoose');
+const mongoose = require('../../common/database')();
 
 const database = require('../../common/database')();
 const productSchema = new database.Schema({

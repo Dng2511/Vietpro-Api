@@ -1,4 +1,3 @@
-const config = require("config");
 const mongoose = require('../../common/database')();
 
 const commentSchema = new mongoose.Schema({
