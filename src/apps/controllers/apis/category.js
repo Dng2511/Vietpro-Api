@@ -12,7 +12,7 @@ exports.index = async (req, res) => {
     });
 }
 
-exports.searchById = async (req, res) => { 
+exports.catProducts = async (req, res) => { 
     const { id } = req.params;
     await CategoryModel.findById(id)
        .then(category => {
@@ -42,4 +42,23 @@ exports.searchById = async (req, res) => {
     
 }
 
+exports.searchById = async (req, res) => {
+    const {id} = req.params;
+    const length = await ProductModel.find({cat_id: id}).countDocuments();
+    await CategoryModel.findById(id)
+    .then(category => {
+        if (!category) {
+            return res.status(404).json({
+                status: "error",
+                message: "Category not found"
+            });
+        }
+        else {
+            return res.status(200).json({
+                status: "success",
+                data: {...category._doc, length}
+            });
+        }
+    })
+}
 

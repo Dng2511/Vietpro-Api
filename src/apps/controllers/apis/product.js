@@ -5,6 +5,7 @@ exports.index = async (req, res) => {
     const query = {};
     query.is_stock = req.query.is_stock || true;
     query.is_featured = req.query.featured || false;
+    if(req.query.name) query.$text = { $search: req.query.name };
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 12;
     const skip = limit*(page-1);
@@ -63,7 +64,7 @@ exports.storeComment = async (req, res) =>{
     const comment = {
         name: body.name,
         email: body.email,
-        content: body.content,
+        body: body.body,
         prd_id: id,
     };
     await new CommentModel(comment).save();
